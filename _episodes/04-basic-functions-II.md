@@ -23,7 +23,21 @@ keypoints:
 
 ## Transforming data
 
-### Introducing Transformations
+---
+1. Through facets, filters and clusters OpenRefine offers ways of getting an overview of your data, and making changes where you want to standardize terms used to a common set of values.
+2. Sometimes there will be changes you want to make to the data that cannot be achieved in this way.
+3. In these cases, OpenRefine supports 'Transformations' which are ways of manipulating data in columns.
+    * Transformations are written in a language called 'GREL' (Google Refine Expression Language, General Refine Expression language).
+    * Similar to Excel Formula, but they tend to focus on text manipulations rather than numeric functions.
+---
+
+## Uses (tidy data)
+
+* Splitting variables that are in a single column into multiple columns (e.g. splitting an address into multiple parts)
+* Standardizing the format of data in a column without changing the values (e.g. removing punctuation or standardizing a date format)
+* Extracting a particular type of data from a longer text string (e.g. finding ISBNs in a bibliographic citation)
+
+## Introducing Transformations
 
 Through facets, filters and clusters OpenRefine offers relatively straightforward ways of getting an overview of your data, and making changes where you want to standardise terms used to a common set of values.
 
