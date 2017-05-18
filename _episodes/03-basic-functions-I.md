@@ -24,14 +24,16 @@ keypoints:
 * Sorting data
 * Facets
 
-???
+---
 
 ## Layout
 
 * OpenRefine displays data in a tabular format. Each row will usually represent a 'record' in the data, while each column represents a type of information
 * OpenRefine only displays a limited number of lines of data at one time. You can adjust the number choosing between 5, 10 (the default), 25 and 50.
-* You can reorder or drop columns by using the first column 'all' and choosing 'Edit columns->Re-order / remove columns …'
+* You can reorder or drop columns by using the first column 'all' and choosing `Edit columns->Re-order / remove columns …`
 * Drag and drop columns
+
+Another thing you can do is ...
 
 >## Sorting data
 >1. Choose the drop down of the column you want to sort and choose `Sort...``
@@ -79,11 +81,6 @@ keypoints:
 
 ## More on Facets
 As well as 'Text facets' Refine also supports a range of other types of facet. These include:
-
-* Numeric facets
-* Timeline facets (for dates)
-* Custom facets
-* Scatterplot facets
 
 **Numeric and Timeline facets** display graphs instead of lists of values. The graph includes 'drag and drop' controls you can use to set a start and end range to filter the data displayed.
 
@@ -150,8 +147,8 @@ This approach is useful in relatively small facets where you might have small va
 >
 >>## Solution
 >>1. Click the dropdown menu at the top of the Author column
->>2. Choose 'Edit cells->Split multi-valued cells'
->>3. In the prompt type the "\|" symbol and click 'OK'
+>>2. Choose `Edit cells->Split multi-valued cells`
+>>3. In the prompt type the `|` symbol and click 'OK'
 >>    * Note that the rows are still numbered sequentially
 >>4. Click the 'Records' option to change to Records mode
 >>    * Note how the numbering has changed - indicating that several rows are related to the same record
@@ -163,15 +160,10 @@ This approach is useful in relatively small facets where you might have small va
 ## Clustering
 
 * Groups together values in a column that are 'similar' and enables you to merge together several different, but similar, values into a single value
+* This is very effective where you have data where there can be minor variations in data values that are likely such as names of people, organisations and places.
 * To use the `Cluster` function, click on the `Edit Cells` menu option in the relevant column and choose 'Cluster and edit...'
 * Clusters are created using an algorithm & OF has multiple clustering algorithms -- experiment to see what does best
 * For more information on the methods used to create Clusters see <https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth>
-
-???
-* This is very effective where you have data where there can be minor variations in data values that are likely such as names of people, organisations and places.
-* Clusters are created automatically via an algorithm
-    * OF has a number of different algorithms - best to play with which one works best for you data
-* For more information on the methods used to create Clusters see [https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth](https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth)
 * Post cluster you have option to merge the values together - replace with a single consistent value.
     * OF will choose the most common value, but you can change to another value  
     * You can also type a new value
@@ -179,7 +171,7 @@ This approach is useful in relatively small facets where you might have small va
 
 >## Exercise 6: Use Clustering to clean up author data
 > * Cluster on the Author column using: `Edit cells->Cluster and edit …`
-> * Choose 'Edit cells->Cluster and edit' from the author column (which should be split into individual values from the last exercise)
+> * Choose `Edit cells->Cluster and edit` from the author column (which should be split into individual values from the last exercise)
 > * Using the 'key collision' method with the 'fingerprint' Keying Function work through the clusters of values, merging them to a single value where appropriate
 > * Try changing the clustering method being used - which ones work well?
 {: .challenge}

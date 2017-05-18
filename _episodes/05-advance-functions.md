@@ -18,12 +18,14 @@ keypoints:
 ---
 
 ## Looking up data from an URL
+
 * OF can retrieve data from the web
 * As an example, you can look up names against the Virtual International Authority File (VIAF), and retrieve additional information such as dates of birth/death and identifiers.
 * Typically this is a two step process - firstly a step to retrieve data from a remote service, and secondly to extract the relevant information from the data you have retrieved.
-* To retrieve data from an external source, from the drop down menu at a column heading use the option 'Edit column->Add column by fetching URLs'.
+* To retrieve data from an external source, from the drop down menu at a column heading use the option `Edit column->Add column by fetching URLs`.
 
-???
+---
+
 This will prompt you for a GREL expression to create a URL. Usually this would be a URL that uses existing values in your data to build a query. When the query runs OpenRefine will request each URL (for each line) and retrieve whatever data is returned (this may often be structured data, but could be simply HTML).
 
 The data retrieved will be stored in a cell in the new column that has been added to the project. You can then use OpenRefine transformations to extract relevant information from the data that has been retrieved. Two specific OpenRefine functions used for this are:
@@ -37,7 +39,7 @@ The next exercise demonstrates this two stage process in full.
 
 ---
 
->## Exercise 11: Retrieving journal details from CrossRef via ISSN
+>## Exercise 11a: Retrieving journal details from CrossRef via ISSN
 >Because retrieving data from external URLs takes time, this exercise targets a single line in the data. In reality you would want to run this over many rows (and probably go and do something else while it ran)
 >
 >* Select a single row from the data set which contains an ISSN by:
@@ -52,29 +54,35 @@ The next exercise demonstrates this two stage process in full.
 >
 >The syntax for requesting journal information from CrossRef is ```http://api.crossref.org/journals/{ISSN}``` where {ISSN} is replaced with the ISSN of the journal
 >
->* In the expression box type the GREL ```"http://api.crossref.org/journals/"+value```
->* Click 'OK'
+>* In the expression box type the GREL `"http://api.crossref.org/journals/"+value`
+>* Click `OK`
 >
 >You should see a message at the top on the OpenRefine screen indicating it is fetching some data, and how far it has >got. Wait for this to complete. Fetching data for a single row should take only ten seconds or so, but fetching data for >all rows will take longer. You can speed this up by modifying the "Throttle Delay" setting in the 'Add column by >fetching URLs' dialog which controls the delay between each URL request made by OpenRefine. This is defaulted to a >rather large 5000 milliseconds (5 seconds).
 >
->At this point you should have a new cell containing a long text string in a format called 'JSON' (this stands for >JavaScript Object Notation, although very rarely spelt out in full).
+{: .challenge}
+
+
+>## Exercise 11b: Parsing the results from crossref
+>At this point you should have a new cell containing a long text string in a format called 'JSON' (this stands for  JavaScript Object Notation, although very rarely spelt out in full).
 >
 >OpenRefine has a function for extracting data from JSON (sometimes referred to as 'parsing' the JSON). The 'parseJson' >function is explained in more detail at >[https://github.com/OpenRefine/OpenRefine/wiki/GREL-Other-Functions](https://github.com/OpenRefine/OpenRefine/wiki/GREL-Other-Functions).
 >
->* In the new column you've just added use the dropdown menu to access 'Edit column->Add column based on this column'
->* Add a name for the new column e.g. "Journal Title"
->* In the Expression box type the GREL ```value.parseJson().message.title```
->* You should see in the Preview the Journal title displays
+>1. In the new column you've just added use the dropdown menu to access 'Edit column->Add column based on this column'
+>2. Add a name for the new column e.g. "Journal Title"
+>3. In the Expression box type the GREL `value.parseJson().message.title`
+>4. You should see in the Preview the Journal title displays
 >
->The reason for using 'Add column based on this column' is simply that this allows you to retain the full JSON and >extract further data from it if you need to. If you only wanted the title and did not need any other information from >the JSON you could use 'Edit cells->Transform...' with the same GREL expression.
+>The reason for using `Add column based on this column` is simply that this allows you to retain the full JSON and >extract further data from it if you need to. If you only wanted the title and did not need any other information from >the JSON you could use `Edit cells->Transform...` with the same GREL expression.
 {: .challenge}
+
 ---
 
 ## Reconciliation services
 
-* allow you to lookup terms from your data in OpenRefine against external services, and use values from the external services in your data.
+* Allow you to lookup terms from your data in OpenRefine against external services, and use values from the external services in your data.
 * Reconciliation services can be more sophisticated and often quicker than using the method described above to retrieve data from a URL
 * There are a few services where you can find an OpenRefine Reconciliation option available. For example WikiData has a (fledgling) reconciliation service at [https://tools.wmflabs.org/wikidata-reconcile/](https://tools.wmflabs.org/wikidata-reconcile/).
+    * As of OF 2.7 this is a default option
 
 ---
 
@@ -122,7 +130,7 @@ More info:
 >    
 >9. Close the `Publisher: best candidate's score` facet, but leave the `Publisher: Judgement` facet open
 >
->    If you look at the Publisher column, you should see some cells have found one or more matches - the potential matches are show in a list in each cell. Next to each potential match there is a 'tick' and a 'double tick'. To accept a reconciliation match you can use the 'tick' options in cells. The 'tick' accepts the match for the single cell, the 'double tick' accepts the match for all identical cells.
+>    If you look at the Publisher column, you should see some cells have found one or more matches - the potential matches are shown in a list in each cell. Next to each potential match there is a 'tick' and a 'double tick'. To accept a reconciliation match you can use the 'tick' options in cells. The 'tick' accepts the match for the single cell, the 'double tick' accepts the match for all identical cells.
 >    
 >10. Create a text facet on the Publisher column
 >11. Choose 'International Union of Crystallography'

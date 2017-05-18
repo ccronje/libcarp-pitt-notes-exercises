@@ -40,20 +40,21 @@ keypoints:
 ---
 ## GREL
 
-* 'GREL' (Google Refine Expression Language). To some extent GREL expressions are similar to Excel Formula, although they tend to focus on text manipulations rather than numeric functions.
+* 'GREL' (Google Refine Expression Language).
 * [https://github.com/OpenRefine/OpenRefine/wiki/Google-refine-expression-language](https://github.com/OpenRefine/OpenRefine/wiki/Google-refine-expression-language)
 * This tutorial covers only a small subset of the commands available.
 ---
+
 ## Common Transformations
 
 * Available through column drop downs
 
 Common Transformation  | Action | GREL expression
 --------------------| ------------- | -------------
-To Uppercase| Converts the current value to uppercase | ```value.toUppercase()```
-To Lowercase| Converts the current value to lowercase | ```value.toLowercase()```
-To Titlecase| Converts the current value to titlecase (i.e. each word starts with an uppercase character and all other characters are converted to lowercase) | ```value.toTitlecase()```
-Trim leading and trailing whitespace | Removes any 'whitespace' characters (e.g. spaces, tabs) from the start or end of the current value | ```value.trim()```
+To Uppercase| Converts the current value to uppercase | `value.toUppercase()`
+To Lowercase| Converts the current value to lowercase | `value.toLowercase()`
+To Titlecase| Converts the current value to titlecase (i.e. each word starts with an uppercase character and all other characters are converted to lowercase) | `value.toTitlecase()`
+Trim leading and trailing whitespace | Removes any 'whitespace' characters (e.g. spaces, tabs) from the start or end of the current value | `value.trim()`
 
 >## Exercise 7: Correct Publisher data
 >* Create a text facet on the Publisher column
@@ -70,7 +71,7 @@ Trim leading and trailing whitespace | Removes any 'whitespace' characters (e.g.
 ---
 ## Writing Transformations in GREL
 
-* Select the column on which you wish to perform a transformation and choose 'Edit cells->Transform…'
+* Select the column on which you wish to perform a transformation and choose `Edit cells->Transform…`
 * Note the box where you write the expression
 * Needs to be valid GREL (if you don't get a preview of the changed data it isn't GREL)
 
@@ -79,8 +80,8 @@ Trim leading and trailing whitespace | Removes any 'whitespace' characters (e.g.
 
 GREL functions are written by giving a value of some kind (a text string, a date, a number etc.) to a GREL function. Some GREL functions take additional parameters or options which control how the function works. GREL supports two types of syntax:
 
-* value.function(options)
-* function(value, options)
+* `value.function(options)`
+* `function(value, options)`
 
 ---
 
@@ -100,7 +101,7 @@ GREL functions are written by giving a value of some kind (a text string, a date
 >3. See that the Titles for these are all in uppercase
 >4. Click the dropdown menu on the Title column
 >5. Choose 'Edit cells->Transform...'
->6. Now using the `toTitlecase()` function, transform those titles to title case. (Remember you can a GREL function two ways: `value.function(options)` or `function(value, options)`)
+>6. Now using the `toTitlecase()` function, transform those titles to title case. (Remember you can use a GREL function two ways: `value.function(options)` or `function(value, options)`)
 >
 >>## Solution
 >>1. Facet by publisher
@@ -179,9 +180,7 @@ The data types supported are:
 value.contains("test")
 ~~~
 
-* Boolean often use to generate true and false in a test
-
-Such tests can be combined with other GREL expressions to create more complex transformations. For example, to carry out a further transformation only if a test is successful. The GREL transformation ```if(value.contains("test"),"Test data",value)``` replaces a cell value with the words "Test data" only *if* the value in the cell contains the string "test" anywhere.
+Such tests can be combined with other GREL expressions to create more complex transformations. For example, to carry out a further transformation only if a test is successful. The GREL transformation `if(value.contains("test"),"Test data",value)` replaces a cell value with the words "Test data" only *if* the value in the cell contains the string "test" anywhere.
 
 ---
 
@@ -255,22 +254,22 @@ Taking the above example again, this would result in a string with the days of t
 >We can do a crude test for reversed author names by looking for those that contain a comma:
 >
 >* Make sure you have already split the author names into individual cells using `Edit cells->Split multi-valued cells` (you should have done this in exercise 5)
->* On the Authors column, use the dropdown menu and select 'Facet->Custom text facet...'
+>* On the Authors column, use the dropdown menu and select `Facet->Custom text facet...`
 >    * The Custom text facet function allows you to write GREL functions to create a facet
->* In the Expression box type ```value.contains(",")```
->* Click 'OK'
+>* In the Expression box type `value.contains(",")`
+>* Click `OK`
 >* Since the 'contains' function outputs a Boolean value, you should see a facet that contains 'false' and 'true'. These represent the outcome of the expression, i.e. true = values containing a comma; false = values not containing a comma
 >* In this facet select 'true' to narrow down to the author names that contain a comma
 >
->Now we have narrowed down to the lines with a comma in a name, we can use the 'match' function. The match function allows you to use regular expressions, and output the capture groups as an array, which you can then manipulate.
+>Now we have narrowed down to the lines with a comma in a name, we can use the `match` function. The match function allows you to use regular expressions, and output the capture groups as an array, which you can then manipulate.
 >
->* On the Authors column use the dropdown menu and select 'Edit cells->Transform'
->* In the Expression box type ```value.match(/(.*),(.*)/)```  The "/",  means you are using a regular expression inside a >GREL expression. The parentheses indicate you are going to match a group of characters. The ".*" expression will match >any character from 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any >number of characters.
+>* On the Authors column use the dropdown menu and select `Edit cells->Transform`
+>* In the Expression box type `value.match(/(.*),(.*)/)`  The "/",  means you are using a regular expression inside a >GREL expression. The parentheses indicate you are going to match a group of characters. The ".*" expression will match >any character from 0, 1 or more times. So here we are matching any number of characters, a comma, and another set of any >number of characters.
 >* See how this creates an array with two members in each row in the Preview column
 >
 >To get the author name in the natural order you can reverse the array and join it back together with a space to create the string you need:
 >
->* In the Expression box, add to the existing expression until it reads ```value.match(/(.*),(.*)/).reverse().join(" ")```
+>* In the Expression box, add to the existing expression until it reads `value.match(/(.*),(.*)/).reverse().join(" ")`
 >* In the Preview view you should be able see this has reversed the array, and joined it back into a string
 >* Click 'OK'
 {: .challenge}

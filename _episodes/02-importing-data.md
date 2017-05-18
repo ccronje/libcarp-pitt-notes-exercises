@@ -31,8 +31,9 @@ If you haven't already, at this point download [doaj-article-sample.csv](https:/
 >To import the data for the exercises below, run OpenRefine. *NOTE: If Open Refine does not open in a browser window, open your browser and type the address <http://127.0.0.1:3333/> to take you to the Open Refine interface.*
 >***Put up a red sticky if you can't start Open Refine***.
 >
-> Make sure your imported data is set to **`UTF-8`**, that the **first row is used as the header**, that OpenRefine **doesn't automatically detect numbers and dates in your values**.
->Name and create your project.
+>1. Create project and open the data file.
+>2. Make sure your imported data is set to **`UTF-8`**, that the **first row is used as the header**, and that OpenRefine **doesn't automatically detect numbers and dates in your values**.
+>3. Name and create your project.
 >
 >>## Solution
 >>1. Locate the file which you have downloaded called `doaj-article-sample.csv`
